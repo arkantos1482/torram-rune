@@ -1,51 +1,69 @@
-# torram
-**torram** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
+# Torram: Bitcoin Ordinal RUNE Bridge & Staking Platform
 
-## Get started
+A Cosmos SDK-based application that enables staking of Bitcoin Ordinal RUNEs.
 
+## Architecture Overview
+
+The application consists of two main components:
+
+1. **Rune Module (`x/rune`)**: Handles RUNE staking operations and state management on the Cosmos chain
+2. **Bridge Service (`bridge/`)**: Manages synchronization between Cosmos chain and Bitcoin Ordinal Runes
+
+### Key Features
+
+#### RUNE Staking
+- State tracking with multiple status types (pending, staked, unstaked, failed)
+- Event-driven architecture for stake/unstake operations
+
+#### Bitcoin Bridge
+- Unidirectional bridge between Cosmos chain and Bitcoin network
+- Automatic synchronization of RUNE metadata with Bitcoin Ordinals
+
+## Technical Implementation
+
+### Staking Flow
+1. User initiates stake transaction through Cosmos SDK messages
+2. `MsgStakeRune` creates a staking record with pending status
+3. Bridge service listens for stake events
+4. Ordinal metadata is updated on Bitcoin network
+5. Stake status is confirmed on Cosmos chain
+
+### Bridge Service
+```go
+type BridgeService struct {
+    config        Config
+    cosmosClient  *cosmos.Client
+    ordinalClient *ordinals.Client
+}
 ```
-ignite chain serve
+
+- Maintains connections to both Cosmos and Bitcoin networks
+- Processes stake/unstake events
+- Updates RUNE metadata
+- Handles failure scenarios with automatic status updates
+
+### RUNE Metadata Structure
+```go
+type RuneMetadata struct {
+    RuneID         string    
+    State          string    
+    Chain          string    
+    Owner          string    
+    TxHash         string    
+    StakeTimestamp time.Time 
+}
 ```
 
-`serve` command installs dependencies, builds, initializes, and starts your blockchain in development.
+## Event System
 
-### Configure
-
-Your blockchain in development can be configured with `config.yml`. To learn more, see the [Ignite CLI docs](https://docs.ignite.com).
-
-### Web Frontend
-
-Additionally, Ignite CLI offers both Vue and React options for frontend scaffolding:
-
-For a Vue frontend, use: `ignite scaffold vue`
-For a React frontend, use: `ignite scaffold react`
-These commands can be run within your scaffolded blockchain project. 
+The platform uses an event-driven architecture:
+- `rune_stake_initiated`: Emitted when a stake is initiated
+- `rune_unstake_initiated`: Emitted when an unstake is requested
+- Events include metadata for cross-chain synchronization
 
 
-For more information see the [monorepo for Ignite front-end development](https://github.com/ignite/web).
+## Dependencies
 
-## Release
-To release a new version of your blockchain, create and push a new tag with `v` prefix. A new draft release with the configured targets will be created.
-
-```
-git tag v0.1
-git push origin v0.1
-```
-
-After a draft release is created, make your final changes from the release page and publish it.
-
-### Install
-To install the latest version of your blockchain node's binary, execute the following command on your machine:
-
-```
-curl https://get.ignite.com/username/torram@latest! | sudo bash
-```
-`username/torram` should match the `username` and `repo_name` of the Github repository to which the source code was pushed. Learn more about [the install process](https://github.com/allinbits/starport-installer).
-
-## Learn more
-
-- [Ignite CLI](https://ignite.com/cli)
-- [Tutorials](https://docs.ignite.com/guide)
-- [Ignite CLI docs](https://docs.ignite.com)
-- [Cosmos SDK docs](https://docs.cosmos.network)
-- [Developer Chat](https://discord.gg/ignite)
+- Cosmos SDK
+- Bitcoin Core RPC
+- Ordinals Protocol Support
