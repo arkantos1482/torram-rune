@@ -1,0 +1,13 @@
+syntax = "proto3";
+package torram.rune;
+
+option go_package = "torram/x/rune/types";
+
+message StakedRune {
+  
+  string runeId = 1; 
+  string owner = 2; 
+  uint64 amount = 3; 
+  uint64 stakingTime = 4; 
+  string status = 5; 
+}
