@@ -115,34 +115,121 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+type QueryGetStakedRuneRequest struct {
+	RuneId string `protobuf:"bytes,1,opt,name=runeId,proto3" json:"runeId,omitempty"`
+}
+
+func (m *QueryGetStakedRuneRequest) Reset()         { *m = QueryGetStakedRuneRequest{} }
+func (m *QueryGetStakedRuneRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStakedRuneRequest) ProtoMessage()    {}
+func (*QueryGetStakedRuneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a6fa5b177ea788ee, []int{2}
+}
+func (m *QueryGetStakedRuneRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStakedRuneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStakedRuneRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStakedRuneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStakedRuneRequest.Merge(m, src)
+}
+func (m *QueryGetStakedRuneRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStakedRuneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStakedRuneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStakedRuneRequest proto.InternalMessageInfo
+
+func (m *QueryGetStakedRuneRequest) GetRuneId() string {
+	if m != nil {
+		return m.RuneId
+	}
+	return ""
+}
+
+type QueryGetStakedRuneResponse struct {
+}
+
+func (m *QueryGetStakedRuneResponse) Reset()         { *m = QueryGetStakedRuneResponse{} }
+func (m *QueryGetStakedRuneResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStakedRuneResponse) ProtoMessage()    {}
+func (*QueryGetStakedRuneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a6fa5b177ea788ee, []int{3}
+}
+func (m *QueryGetStakedRuneResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStakedRuneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStakedRuneResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStakedRuneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStakedRuneResponse.Merge(m, src)
+}
+func (m *QueryGetStakedRuneResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStakedRuneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStakedRuneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStakedRuneResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "torram.rune.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "torram.rune.QueryParamsResponse")
+	proto.RegisterType((*QueryGetStakedRuneRequest)(nil), "torram.rune.QueryGetStakedRuneRequest")
+	proto.RegisterType((*QueryGetStakedRuneResponse)(nil), "torram.rune.QueryGetStakedRuneResponse")
 }
 
 func init() { proto.RegisterFile("torram/rune/query.proto", fileDescriptor_a6fa5b177ea788ee) }
 
 var fileDescriptor_a6fa5b177ea788ee = []byte{
-	// 294 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2f, 0xc9, 0x2f, 0x2a,
-	0x4a, 0xcc, 0xd5, 0x2f, 0x2a, 0xcd, 0x4b, 0xd5, 0x2f, 0x2c, 0x4d, 0x2d, 0xaa, 0xd4, 0x2b, 0x28,
-	0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x86, 0x48, 0xe8, 0x81, 0x24, 0xa4, 0x04, 0x13, 0x73, 0x33, 0xf3,
-	0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x5e, 0x4a, 0x24, 0x3d, 0x3f, 0x3d, 0x1f, 0xcc, 0xd4, 0x07, 0xb1,
-	0xa0, 0xa2, 0x32, 0xe9, 0xf9, 0xf9, 0xe9, 0x39, 0xa9, 0xfa, 0x89, 0x05, 0x99, 0xfa, 0x89, 0x79,
-	0x79, 0xf9, 0x25, 0x89, 0x25, 0x99, 0xf9, 0x79, 0xc5, 0x50, 0x59, 0xad, 0xe4, 0xfc, 0xe2, 0xdc,
-	0xfc, 0x62, 0xfd, 0xa4, 0xc4, 0x62, 0xa8, 0x65, 0xfa, 0x65, 0x86, 0x49, 0xa9, 0x25, 0x89, 0x86,
-	0xfa, 0x05, 0x89, 0xe9, 0x99, 0x79, 0x60, 0xc5, 0x50, 0xb5, 0x12, 0xc8, 0x0e, 0x2b, 0x48, 0x2c,
-	0x4a, 0xcc, 0x85, 0x9a, 0xa2, 0x24, 0xc2, 0x25, 0x14, 0x08, 0xd2, 0x1b, 0x00, 0x16, 0x0c, 0x4a,
-	0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x51, 0xf2, 0xe5, 0x12, 0x46, 0x11, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b,
-	0x4e, 0x15, 0x32, 0xe3, 0x62, 0x83, 0x68, 0x96, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x36, 0x12, 0xd6,
-	0x43, 0xf2, 0x97, 0x1e, 0x44, 0xb1, 0x13, 0xe7, 0x89, 0x7b, 0xf2, 0x0c, 0x2b, 0x9e, 0x6f, 0xd0,
-	0x62, 0x0c, 0x82, 0xaa, 0x36, 0x2a, 0xe4, 0x62, 0x05, 0x1b, 0x27, 0x94, 0xc1, 0xc5, 0x06, 0x51,
-	0x25, 0x24, 0x8f, 0xa2, 0x15, 0xd3, 0x09, 0x52, 0x0a, 0xb8, 0x15, 0x40, 0x5c, 0xa3, 0x24, 0xdd,
-	0x74, 0xf9, 0xc9, 0x64, 0x26, 0x51, 0x21, 0x61, 0x7d, 0x4c, 0xdf, 0x39, 0xe9, 0x9e, 0x78, 0x24,
-	0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78,
-	0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x30, 0x54, 0x75, 0x05, 0x44, 0x7d, 0x49, 0x65,
-	0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x34, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0xd3, 0x0f,
-	0xff, 0x8d, 0xc2, 0x01, 0x00, 0x00,
+	// 380 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x51, 0xcf, 0x4a, 0xe3, 0x40,
+	0x18, 0x4f, 0x0a, 0x1b, 0xe8, 0x94, 0x3d, 0xec, 0xa4, 0xbb, 0xdb, 0xcd, 0x96, 0xb4, 0x04, 0x76,
+	0x2b, 0x85, 0x66, 0x68, 0x0b, 0x3e, 0x40, 0x2f, 0xe2, 0x41, 0xd0, 0x78, 0xf3, 0x52, 0xa6, 0x76,
+	0x88, 0x41, 0x33, 0x93, 0x66, 0x26, 0x62, 0x11, 0x2f, 0xfa, 0x00, 0x0a, 0xbe, 0x84, 0x47, 0x1f,
+	0xa3, 0xc7, 0x82, 0x17, 0x4f, 0x22, 0xad, 0xe0, 0x6b, 0x48, 0x66, 0xe6, 0xd0, 0xd0, 0x8a, 0x97,
+	0x30, 0xf3, 0xfd, 0xfe, 0x7e, 0x13, 0xf0, 0x5b, 0xb0, 0x34, 0xc5, 0x31, 0x4a, 0x33, 0x4a, 0xd0,
+	0x24, 0x23, 0xe9, 0xd4, 0x4f, 0x52, 0x26, 0x18, 0xac, 0x28, 0xc0, 0xcf, 0x01, 0xe7, 0x07, 0x8e,
+	0x23, 0xca, 0x90, 0xfc, 0x2a, 0xdc, 0xa9, 0x86, 0x2c, 0x64, 0xf2, 0x88, 0xf2, 0x93, 0x9e, 0xd6,
+	0x43, 0xc6, 0xc2, 0x33, 0x82, 0x70, 0x12, 0x21, 0x4c, 0x29, 0x13, 0x58, 0x44, 0x8c, 0x72, 0x8d,
+	0xb6, 0x8f, 0x19, 0x8f, 0x19, 0x47, 0x23, 0xcc, 0x75, 0x18, 0x3a, 0xef, 0x8e, 0x88, 0xc0, 0x5d,
+	0x94, 0xe0, 0x30, 0xa2, 0x92, 0xac, 0xb9, 0xb5, 0xd5, 0x62, 0x09, 0x4e, 0x71, 0xac, 0x5d, 0xbc,
+	0x2a, 0x80, 0x07, 0xb9, 0x76, 0x5f, 0x0e, 0x03, 0x32, 0xc9, 0x08, 0x17, 0xde, 0x1e, 0xb0, 0x0b,
+	0x53, 0x9e, 0x30, 0xca, 0x09, 0xdc, 0x06, 0x96, 0x12, 0xd7, 0xcc, 0xa6, 0xb9, 0x55, 0xe9, 0xd9,
+	0xfe, 0xca, 0x5e, 0xbe, 0x22, 0x0f, 0xca, 0xb3, 0x97, 0x86, 0xf1, 0xf0, 0xfe, 0xd8, 0x36, 0x03,
+	0xcd, 0xf6, 0xfa, 0xe0, 0x8f, 0xb4, 0xdb, 0x21, 0xe2, 0x50, 0xe0, 0x53, 0x32, 0x0e, 0x32, 0x4a,
+	0x74, 0x16, 0xfc, 0x05, 0xac, 0x5c, 0xbe, 0x3b, 0x96, 0xa6, 0xe5, 0x40, 0xdf, 0xbc, 0x3a, 0x70,
+	0x36, 0x89, 0x54, 0x95, 0xde, 0x4d, 0x09, 0x7c, 0x93, 0x30, 0x3c, 0x01, 0x96, 0x4a, 0x86, 0x8d,
+	0x42, 0x9d, 0xf5, 0xb5, 0x9c, 0xe6, 0xe7, 0x04, 0x65, 0xeb, 0xfd, 0xbd, 0x7e, 0x7a, 0xbb, 0x2f,
+	0xfd, 0x84, 0x36, 0x5a, 0x7f, 0x31, 0x78, 0x6b, 0x82, 0xef, 0x85, 0x36, 0xf0, 0xff, 0xba, 0xe1,
+	0xa6, 0x1d, 0x9d, 0xd6, 0x97, 0x3c, 0x9d, 0xdf, 0x91, 0xf9, 0x2d, 0xf8, 0xaf, 0x90, 0x1f, 0x12,
+	0x31, 0xe4, 0x92, 0x3c, 0x94, 0xf7, 0x4b, 0xf5, 0x44, 0x57, 0x83, 0xce, 0x6c, 0xe1, 0x9a, 0xf3,
+	0x85, 0x6b, 0xbe, 0x2e, 0x5c, 0xf3, 0x6e, 0xe9, 0x1a, 0xf3, 0xa5, 0x6b, 0x3c, 0x2f, 0x5d, 0xe3,
+	0xc8, 0xd6, 0xfa, 0x0b, 0xe5, 0x20, 0xa6, 0x09, 0xe1, 0x23, 0x4b, 0xfe, 0xf3, 0xfe, 0x47, 0x00,
+	0x00, 0x00, 0xff, 0xff, 0xb6, 0x0d, 0x4f, 0x46, 0xa8, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -159,6 +246,8 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of GetStakedRune items.
+	GetStakedRune(ctx context.Context, in *QueryGetStakedRuneRequest, opts ...grpc.CallOption) (*QueryGetStakedRuneResponse, error)
 }
 
 type queryClient struct {
@@ -178,10 +267,21 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) GetStakedRune(ctx context.Context, in *QueryGetStakedRuneRequest, opts ...grpc.CallOption) (*QueryGetStakedRuneResponse, error) {
+	out := new(QueryGetStakedRuneResponse)
+	err := c.cc.Invoke(ctx, "/torram.rune.Query/GetStakedRune", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of GetStakedRune items.
+	GetStakedRune(context.Context, *QueryGetStakedRuneRequest) (*QueryGetStakedRuneResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -190,6 +290,9 @@ type UnimplementedQueryServer struct {
 
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (*UnimplementedQueryServer) GetStakedRune(ctx context.Context, req *QueryGetStakedRuneRequest) (*QueryGetStakedRuneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStakedRune not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -214,6 +317,24 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetStakedRune_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetStakedRuneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetStakedRune(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/torram.rune.Query/GetStakedRune",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetStakedRune(ctx, req.(*QueryGetStakedRuneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "torram.rune.Query",
@@ -222,6 +343,10 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "GetStakedRune",
+			Handler:    _Query_GetStakedRune_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -284,6 +409,59 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetStakedRuneRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStakedRuneRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStakedRuneRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.RuneId) > 0 {
+		i -= len(m.RuneId)
+		copy(dAtA[i:], m.RuneId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.RuneId)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetStakedRuneResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStakedRuneResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStakedRuneResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -312,6 +490,28 @@ func (m *QueryParamsResponse) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetStakedRuneRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.RuneId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetStakedRuneResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -433,6 +633,138 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStakedRuneRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStakedRuneRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStakedRuneRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RuneId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RuneId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStakedRuneResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStakedRuneResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStakedRuneResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])

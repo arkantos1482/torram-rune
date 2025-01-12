@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package torram.rune;
 
 import "amino/amino.proto";
@@ -11,20 +12,32 @@ option go_package = "torram/x/rune/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/torram/rune/params";
+  
+  }
+  
+  // Queries a list of GetStakedRune items.
+  rpc GetStakedRune (QueryGetStakedRuneRequest) returns (QueryGetStakedRuneResponse) {
+    option (google.api.http).get = "/torram/rune/get_staked_rune/{runeId}";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetStakedRuneRequest {
+  string runeId = 1;
+}
+
+message QueryGetStakedRuneResponse {}
+

@@ -17,6 +17,13 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod:      "GetStakedRune",
+					Use:            "get-staked-rune [rune-id]",
+					Short:          "Query get-staked-rune",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
