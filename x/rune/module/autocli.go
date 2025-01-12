@@ -34,6 +34,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a stake-rune tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}, {ProtoField: "owner"}, {ProtoField: "amount"}},
 				},
+				{
+					RpcMethod:      "UnstakeRune",
+					Use:            "unstake-rune [rune-id] [owner] [amount]",
+					Short:          "Send a unstake-rune tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}, {ProtoField: "owner"}, {ProtoField: "amount"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

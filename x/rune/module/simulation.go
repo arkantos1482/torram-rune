@@ -27,6 +27,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgStakeRune int = 100
 
+	opWeightMsgUnstakeRune = "op_weight_msg_unstake_rune"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUnstakeRune int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -61,6 +65,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		runesimulation.SimulateMsgStakeRune(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgUnstakeRune int
+	simState.AppParams.GetOrGenerate(opWeightMsgUnstakeRune, &weightMsgUnstakeRune, nil,
+		func(_ *rand.Rand) {
+			weightMsgUnstakeRune = defaultWeightMsgUnstakeRune
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUnstakeRune,
+		runesimulation.SimulateMsgUnstakeRune(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -74,6 +89,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgStakeRune,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				runesimulation.SimulateMsgStakeRune(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgUnstakeRune,
+			defaultWeightMsgUnstakeRune,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				runesimulation.SimulateMsgUnstakeRune(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
