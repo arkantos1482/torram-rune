@@ -28,6 +28,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
 				},
+				{
+					RpcMethod:      "StakeRune",
+					Use:            "stake-rune [rune-id] [owner] [amount]",
+					Short:          "Send a stake-rune tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}, {ProtoField: "owner"}, {ProtoField: "amount"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
