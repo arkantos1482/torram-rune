@@ -1,0 +1,15 @@
+syntax = "proto3";
+package torram.rune;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "torram/x/rune/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "torram/x/rune/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
