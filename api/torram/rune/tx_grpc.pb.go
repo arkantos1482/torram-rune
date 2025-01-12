@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/torram.rune.Msg/UpdateParams"
-	Msg_StakeRune_FullMethodName    = "/torram.rune.Msg/StakeRune"
-	Msg_UnstakeRune_FullMethodName  = "/torram.rune.Msg/UnstakeRune"
+	Msg_UpdateParams_FullMethodName     = "/torram.rune.Msg/UpdateParams"
+	Msg_StakeRune_FullMethodName        = "/torram.rune.Msg/StakeRune"
+	Msg_UnstakeRune_FullMethodName      = "/torram.rune.Msg/UnstakeRune"
+	Msg_UpdateRuneStatus_FullMethodName = "/torram.rune.Msg/UpdateRuneStatus"
 )
 
 // MsgClient is the client API for Msg service.
@@ -34,6 +35,7 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	StakeRune(ctx context.Context, in *MsgStakeRune, opts ...grpc.CallOption) (*MsgStakeRuneResponse, error)
 	UnstakeRune(ctx context.Context, in *MsgUnstakeRune, opts ...grpc.CallOption) (*MsgUnstakeRuneResponse, error)
+	UpdateRuneStatus(ctx context.Context, in *MsgUpdateRuneStatus, opts ...grpc.CallOption) (*MsgUpdateRuneStatusResponse, error)
 }
 
 type msgClient struct {
@@ -71,6 +73,15 @@ func (c *msgClient) UnstakeRune(ctx context.Context, in *MsgUnstakeRune, opts ..
 	return out, nil
 }
 
+func (c *msgClient) UpdateRuneStatus(ctx context.Context, in *MsgUpdateRuneStatus, opts ...grpc.CallOption) (*MsgUpdateRuneStatusResponse, error) {
+	out := new(MsgUpdateRuneStatusResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateRuneStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -80,6 +91,7 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	StakeRune(context.Context, *MsgStakeRune) (*MsgStakeRuneResponse, error)
 	UnstakeRune(context.Context, *MsgUnstakeRune) (*MsgUnstakeRuneResponse, error)
+	UpdateRuneStatus(context.Context, *MsgUpdateRuneStatus) (*MsgUpdateRuneStatusResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -95,6 +107,9 @@ func (UnimplementedMsgServer) StakeRune(context.Context, *MsgStakeRune) (*MsgSta
 }
 func (UnimplementedMsgServer) UnstakeRune(context.Context, *MsgUnstakeRune) (*MsgUnstakeRuneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnstakeRune not implemented")
+}
+func (UnimplementedMsgServer) UpdateRuneStatus(context.Context, *MsgUpdateRuneStatus) (*MsgUpdateRuneStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRuneStatus not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -163,6 +178,24 @@ func _Msg_UnstakeRune_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_UpdateRuneStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateRuneStatus)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateRuneStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateRuneStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateRuneStatus(ctx, req.(*MsgUpdateRuneStatus))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -181,6 +214,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnstakeRune",
 			Handler:    _Msg_UnstakeRune_Handler,
+		},
+		{
+			MethodName: "UpdateRuneStatus",
+			Handler:    _Msg_UpdateRuneStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,9 +16,10 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
-  rpc StakeRune    (MsgStakeRune   ) returns (MsgStakeRuneResponse   );
-  rpc UnstakeRune  (MsgUnstakeRune ) returns (MsgUnstakeRuneResponse );
+  rpc UpdateParams     (MsgUpdateParams    ) returns (MsgUpdateParamsResponse    );
+  rpc StakeRune        (MsgStakeRune       ) returns (MsgStakeRuneResponse       );
+  rpc UnstakeRune      (MsgUnstakeRune     ) returns (MsgUnstakeRuneResponse     );
+  rpc UpdateRuneStatus (MsgUpdateRuneStatus) returns (MsgUpdateRuneStatusResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -57,4 +58,13 @@ message MsgUnstakeRune {
 }
 
 message MsgUnstakeRuneResponse {}
+
+message MsgUpdateRuneStatus {
+  option (cosmos.msg.v1.signer) = "authority";
+  string authority = 1;
+  string runeId    = 2;
+  string status    = 3;
+}
+
+message MsgUpdateRuneStatusResponse {}
 

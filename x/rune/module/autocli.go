@@ -47,6 +47,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a unstake-rune tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}, {ProtoField: "owner"}, {ProtoField: "amount"}},
 				},
+				{
+					RpcMethod:      "UpdateRuneStatus",
+					Use:            "update-rune-status [rune-id] [status]",
+					Short:          "Send a update-rune-status tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "runeId"}, {ProtoField: "status"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

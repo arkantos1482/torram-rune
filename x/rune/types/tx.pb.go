@@ -333,6 +333,102 @@ func (m *MsgUnstakeRuneResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUnstakeRuneResponse proto.InternalMessageInfo
 
+type MsgUpdateRuneStatus struct {
+	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	RuneId    string `protobuf:"bytes,2,opt,name=runeId,proto3" json:"runeId,omitempty"`
+	Status    string `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (m *MsgUpdateRuneStatus) Reset()         { *m = MsgUpdateRuneStatus{} }
+func (m *MsgUpdateRuneStatus) String() string { return proto.CompactTextString(m) }
+func (*MsgUpdateRuneStatus) ProtoMessage()    {}
+func (*MsgUpdateRuneStatus) Descriptor() ([]byte, []int) {
+	return fileDescriptor_74c5fb45ea7aec4d, []int{6}
+}
+func (m *MsgUpdateRuneStatus) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgUpdateRuneStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgUpdateRuneStatus.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgUpdateRuneStatus) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgUpdateRuneStatus.Merge(m, src)
+}
+func (m *MsgUpdateRuneStatus) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgUpdateRuneStatus) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgUpdateRuneStatus.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgUpdateRuneStatus proto.InternalMessageInfo
+
+func (m *MsgUpdateRuneStatus) GetAuthority() string {
+	if m != nil {
+		return m.Authority
+	}
+	return ""
+}
+
+func (m *MsgUpdateRuneStatus) GetRuneId() string {
+	if m != nil {
+		return m.RuneId
+	}
+	return ""
+}
+
+func (m *MsgUpdateRuneStatus) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+type MsgUpdateRuneStatusResponse struct {
+}
+
+func (m *MsgUpdateRuneStatusResponse) Reset()         { *m = MsgUpdateRuneStatusResponse{} }
+func (m *MsgUpdateRuneStatusResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgUpdateRuneStatusResponse) ProtoMessage()    {}
+func (*MsgUpdateRuneStatusResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_74c5fb45ea7aec4d, []int{7}
+}
+func (m *MsgUpdateRuneStatusResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgUpdateRuneStatusResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgUpdateRuneStatusResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgUpdateRuneStatusResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgUpdateRuneStatusResponse.Merge(m, src)
+}
+func (m *MsgUpdateRuneStatusResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgUpdateRuneStatusResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgUpdateRuneStatusResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgUpdateRuneStatusResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "torram.rune.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "torram.rune.MsgUpdateParamsResponse")
@@ -340,41 +436,47 @@ func init() {
 	proto.RegisterType((*MsgStakeRuneResponse)(nil), "torram.rune.MsgStakeRuneResponse")
 	proto.RegisterType((*MsgUnstakeRune)(nil), "torram.rune.MsgUnstakeRune")
 	proto.RegisterType((*MsgUnstakeRuneResponse)(nil), "torram.rune.MsgUnstakeRuneResponse")
+	proto.RegisterType((*MsgUpdateRuneStatus)(nil), "torram.rune.MsgUpdateRuneStatus")
+	proto.RegisterType((*MsgUpdateRuneStatusResponse)(nil), "torram.rune.MsgUpdateRuneStatusResponse")
 }
 
 func init() { proto.RegisterFile("torram/rune/tx.proto", fileDescriptor_74c5fb45ea7aec4d) }
 
 var fileDescriptor_74c5fb45ea7aec4d = []byte{
-	// 464 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x53, 0xbf, 0x6f, 0x13, 0x31,
-	0x18, 0x8d, 0x69, 0x1b, 0x74, 0x5f, 0x22, 0x10, 0xd7, 0x53, 0xea, 0x1c, 0x70, 0x84, 0xc0, 0x10,
-	0x45, 0x6a, 0x0e, 0x8a, 0xd4, 0xa1, 0x1b, 0xd9, 0x3a, 0x44, 0x20, 0x57, 0x2c, 0x2c, 0xc8, 0x34,
-	0xd6, 0x11, 0xa1, 0xb3, 0x4f, 0xb6, 0x03, 0xad, 0x84, 0x10, 0x62, 0x64, 0xe2, 0xcf, 0x60, 0x8c,
-	0x04, 0x7f, 0x44, 0xc7, 0x8a, 0x89, 0x09, 0xa1, 0x64, 0xc8, 0x3f, 0xc1, 0x80, 0x7c, 0xf6, 0xe5,
-	0xc7, 0x21, 0xb2, 0xb2, 0xdc, 0xdd, 0x7b, 0xef, 0xbb, 0xf7, 0x3d, 0xdb, 0x9f, 0x21, 0xd0, 0x42,
-	0x4a, 0x9a, 0xc6, 0x72, 0xcc, 0x59, 0xac, 0xcf, 0x7a, 0x99, 0x14, 0x5a, 0xf8, 0x35, 0xcb, 0xf6,
-	0x0c, 0x1b, 0xde, 0xa0, 0xe9, 0x88, 0x8b, 0x38, 0x7f, 0x5a, 0x3d, 0xdc, 0x3b, 0x15, 0x2a, 0x15,
-	0x2a, 0x4e, 0x55, 0x12, 0xbf, 0x79, 0x68, 0x5e, 0x4e, 0x68, 0x5a, 0xe1, 0x45, 0x8e, 0x62, 0x0b,
-	0x9c, 0x14, 0x24, 0x22, 0x11, 0x96, 0x37, 0x5f, 0x8e, 0xc5, 0xab, 0xfd, 0x33, 0x2a, 0x69, 0xea,
-	0xea, 0xdb, 0x5f, 0x11, 0x5c, 0x1f, 0xa8, 0xe4, 0x59, 0x36, 0xa4, 0x9a, 0x3d, 0xcd, 0x15, 0xff,
-	0x10, 0x3c, 0x3a, 0xd6, 0xaf, 0x84, 0x1c, 0xe9, 0x73, 0x8c, 0x5a, 0xa8, 0xe3, 0xf5, 0xf1, 0xf7,
-	0x6f, 0xfb, 0x81, 0x6b, 0xf4, 0x78, 0x38, 0x94, 0x4c, 0xa9, 0x13, 0x2d, 0x47, 0x3c, 0x21, 0xcb,
-	0x52, 0xff, 0x10, 0xaa, 0xd6, 0x1b, 0x5f, 0x69, 0xa1, 0x4e, 0xed, 0x60, 0xb7, 0xb7, 0xb2, 0xc0,
-	0x9e, 0x35, 0xef, 0x7b, 0x17, 0x3f, 0xef, 0x54, 0xbe, 0xcc, 0x27, 0x5d, 0x44, 0x5c, 0xf5, 0xd1,
-	0x83, 0x8f, 0xf3, 0x49, 0x77, 0xe9, 0xf3, 0x69, 0x3e, 0xe9, 0xde, 0x76, 0x81, 0xcf, 0x6c, 0xe4,
-	0x52, 0xc2, 0x76, 0x13, 0xf6, 0x4a, 0x14, 0x61, 0x2a, 0x13, 0x5c, 0xb1, 0xf6, 0x3b, 0xa8, 0x0f,
-	0x54, 0x72, 0xa2, 0xe9, 0x6b, 0x46, 0xc6, 0x9c, 0xf9, 0x18, 0xae, 0x9e, 0x4a, 0x46, 0xb5, 0x90,
-	0x76, 0x29, 0xa4, 0x80, 0x7e, 0x03, 0xaa, 0xc6, 0xfc, 0x78, 0x98, 0xc7, 0xf5, 0x88, 0x43, 0x7e,
-	0x00, 0x3b, 0xe2, 0x2d, 0x67, 0x12, 0x6f, 0xe5, 0xb4, 0x05, 0xa6, 0x9a, 0xa6, 0x62, 0xcc, 0x35,
-	0xde, 0x6e, 0xa1, 0xce, 0x36, 0x71, 0xe8, 0xa8, 0x6e, 0xc2, 0x17, 0x9e, 0xed, 0x06, 0x04, 0xab,
-	0xdd, 0x17, 0xa9, 0xde, 0xc3, 0x35, 0x13, 0x98, 0xab, 0xff, 0x94, 0x0b, 0x43, 0x63, 0xbd, 0x7f,
-	0x91, 0xec, 0xe0, 0x37, 0x82, 0xad, 0x81, 0x4a, 0x7c, 0x02, 0xf5, 0xb5, 0x21, 0xb8, 0xb5, 0x76,
-	0x78, 0xa5, 0xdd, 0x0e, 0xef, 0x6f, 0x52, 0x0b, 0x6f, 0xff, 0x18, 0xbc, 0xe5, 0x41, 0x34, 0xcb,
-	0xbf, 0x2c, 0xa4, 0xf0, 0xee, 0x3f, 0xa5, 0x85, 0xd5, 0x13, 0xa8, 0xad, 0xee, 0xde, 0xcd, 0xbf,
-	0xfa, 0x2f, 0xc5, 0xf0, 0xde, 0x06, 0xb1, 0x30, 0x0c, 0x77, 0x3e, 0x98, 0x19, 0xec, 0xef, 0x5f,
-	0x4c, 0x23, 0x74, 0x39, 0x8d, 0xd0, 0xaf, 0x69, 0x84, 0x3e, 0xcf, 0xa2, 0xca, 0xe5, 0x2c, 0xaa,
-	0xfc, 0x98, 0x45, 0x95, 0xe7, 0xbb, 0xeb, 0x23, 0xa8, 0xcf, 0x33, 0xa6, 0x5e, 0x56, 0xf3, 0x5b,
-	0xf3, 0xe8, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe5, 0x8c, 0xd8, 0x7f, 0xd1, 0x03, 0x00, 0x00,
+	// 521 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xbf, 0x6f, 0xd3, 0x40,
+	0x14, 0x8e, 0xfb, 0x23, 0xc8, 0x2f, 0x51, 0x01, 0xc7, 0x4a, 0x1d, 0xb7, 0x35, 0xc1, 0x30, 0x44,
+	0x91, 0x1a, 0x43, 0x91, 0x3a, 0x64, 0x23, 0x5b, 0x87, 0x08, 0xe4, 0x88, 0x85, 0x01, 0x74, 0x34,
+	0x27, 0x13, 0x21, 0xfb, 0xac, 0xbb, 0x33, 0xb4, 0x12, 0x42, 0x88, 0x91, 0x89, 0x3f, 0x83, 0x31,
+	0x12, 0xfc, 0x11, 0x1d, 0x2b, 0x26, 0x06, 0x84, 0x50, 0x32, 0xe4, 0xdf, 0x40, 0xf6, 0x9d, 0x7f,
+	0x25, 0x6d, 0x18, 0x59, 0x12, 0x7f, 0xef, 0x7b, 0xf7, 0xbd, 0xef, 0xf9, 0xbd, 0x33, 0xe8, 0x9c,
+	0x50, 0x8a, 0x7c, 0x87, 0x46, 0x01, 0x76, 0xf8, 0x59, 0x2f, 0xa4, 0x84, 0x13, 0xad, 0x26, 0xa2,
+	0xbd, 0x38, 0x6a, 0xde, 0x46, 0xfe, 0x24, 0x20, 0x4e, 0xf2, 0x2b, 0x78, 0x73, 0xf7, 0x94, 0x30,
+	0x9f, 0x30, 0xc7, 0x67, 0x9e, 0xf3, 0xf6, 0x61, 0xfc, 0x27, 0x89, 0x96, 0x20, 0x5e, 0x26, 0xc8,
+	0x11, 0x40, 0x52, 0xba, 0x47, 0x3c, 0x22, 0xe2, 0xf1, 0x93, 0x8c, 0x1a, 0xc5, 0xfa, 0x21, 0xa2,
+	0xc8, 0x97, 0xf9, 0xf6, 0x37, 0x05, 0x6e, 0x0e, 0x99, 0xf7, 0x2c, 0x1c, 0x23, 0x8e, 0x9f, 0x26,
+	0x8c, 0x76, 0x0c, 0x2a, 0x8a, 0xf8, 0x6b, 0x42, 0x27, 0xfc, 0xdc, 0x50, 0xda, 0x4a, 0x47, 0x1d,
+	0x18, 0x3f, 0xbe, 0x1f, 0xea, 0xb2, 0xd0, 0xe3, 0xf1, 0x98, 0x62, 0xc6, 0x46, 0x9c, 0x4e, 0x02,
+	0xcf, 0xcd, 0x53, 0xb5, 0x63, 0xa8, 0x0a, 0x6d, 0x63, 0xa3, 0xad, 0x74, 0x6a, 0x47, 0x8d, 0x5e,
+	0xa1, 0xc1, 0x9e, 0x10, 0x1f, 0xa8, 0x17, 0xbf, 0xef, 0x54, 0xbe, 0x2e, 0xa6, 0x5d, 0xc5, 0x95,
+	0xd9, 0xfd, 0x07, 0x9f, 0x16, 0xd3, 0x6e, 0xae, 0xf3, 0x79, 0x31, 0xed, 0x1e, 0x48, 0xc3, 0x67,
+	0xc2, 0xf2, 0x92, 0x43, 0xbb, 0x05, 0xbb, 0x4b, 0x21, 0x17, 0xb3, 0x90, 0x04, 0x0c, 0xdb, 0xef,
+	0xa1, 0x3e, 0x64, 0xde, 0x88, 0xa3, 0x37, 0xd8, 0x8d, 0x02, 0xac, 0x19, 0x70, 0xe3, 0x94, 0x62,
+	0xc4, 0x09, 0x15, 0xad, 0xb8, 0x29, 0xd4, 0x9a, 0x50, 0x8d, 0xc5, 0x4f, 0xc6, 0x89, 0x5d, 0xd5,
+	0x95, 0x48, 0xd3, 0x61, 0x9b, 0xbc, 0x0b, 0x30, 0x35, 0x36, 0x93, 0xb0, 0x00, 0x71, 0x36, 0xf2,
+	0x49, 0x14, 0x70, 0x63, 0xab, 0xad, 0x74, 0xb6, 0x5c, 0x89, 0xfa, 0xf5, 0xd8, 0x7c, 0xaa, 0x69,
+	0x37, 0x41, 0x2f, 0x56, 0xcf, 0x5c, 0x7d, 0x80, 0x9d, 0xd8, 0x70, 0xc0, 0xfe, 0x93, 0x2f, 0x03,
+	0x9a, 0xe5, 0xfa, 0x99, 0x33, 0x06, 0x8d, 0xec, 0x55, 0xc6, 0xc4, 0x88, 0x23, 0x1e, 0x31, 0x6d,
+	0x7f, 0x65, 0x07, 0x8a, 0x93, 0xbe, 0xce, 0x62, 0x13, 0xaa, 0x2c, 0x39, 0x2f, 0x3d, 0x4a, 0xd4,
+	0xdf, 0x29, 0x4f, 0xd8, 0x3e, 0x80, 0xbd, 0x2b, 0x8a, 0xa6, 0x9e, 0x8e, 0x7e, 0x6d, 0xc0, 0xe6,
+	0x90, 0x79, 0x9a, 0x0b, 0xf5, 0xd2, 0x62, 0xee, 0x97, 0x16, 0x6a, 0x69, 0x03, 0xcc, 0xfb, 0xeb,
+	0xd8, 0x54, 0x5b, 0x3b, 0x01, 0x35, 0x5f, 0x8e, 0xd6, 0xf2, 0x91, 0x8c, 0x32, 0xef, 0x5e, 0x4b,
+	0x65, 0x52, 0x4f, 0xa0, 0x56, 0x9c, 0xe8, 0xde, 0x4a, 0xfd, 0x9c, 0x34, 0xef, 0xad, 0x21, 0x33,
+	0xc1, 0x17, 0x70, 0x6b, 0x65, 0x10, 0xed, 0xab, 0xbb, 0xca, 0x33, 0xcc, 0xce, 0xbf, 0x32, 0x52,
+	0x7d, 0x73, 0xfb, 0x63, 0x7c, 0xef, 0x06, 0x87, 0x17, 0x33, 0x4b, 0xb9, 0x9c, 0x59, 0xca, 0x9f,
+	0x99, 0xa5, 0x7c, 0x99, 0x5b, 0x95, 0xcb, 0xb9, 0x55, 0xf9, 0x39, 0xb7, 0x2a, 0xcf, 0x1b, 0xe5,
+	0x6b, 0xc7, 0xcf, 0x43, 0xcc, 0x5e, 0x55, 0x93, 0x2f, 0xc5, 0xa3, 0xbf, 0x01, 0x00, 0x00, 0xff,
+	0xff, 0x38, 0x09, 0x23, 0xb3, 0xc5, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -394,6 +496,7 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	StakeRune(ctx context.Context, in *MsgStakeRune, opts ...grpc.CallOption) (*MsgStakeRuneResponse, error)
 	UnstakeRune(ctx context.Context, in *MsgUnstakeRune, opts ...grpc.CallOption) (*MsgUnstakeRuneResponse, error)
+	UpdateRuneStatus(ctx context.Context, in *MsgUpdateRuneStatus, opts ...grpc.CallOption) (*MsgUpdateRuneStatusResponse, error)
 }
 
 type msgClient struct {
@@ -431,6 +534,15 @@ func (c *msgClient) UnstakeRune(ctx context.Context, in *MsgUnstakeRune, opts ..
 	return out, nil
 }
 
+func (c *msgClient) UpdateRuneStatus(ctx context.Context, in *MsgUpdateRuneStatus, opts ...grpc.CallOption) (*MsgUpdateRuneStatusResponse, error) {
+	out := new(MsgUpdateRuneStatusResponse)
+	err := c.cc.Invoke(ctx, "/torram.rune.Msg/UpdateRuneStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
@@ -438,6 +550,7 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	StakeRune(context.Context, *MsgStakeRune) (*MsgStakeRuneResponse, error)
 	UnstakeRune(context.Context, *MsgUnstakeRune) (*MsgUnstakeRuneResponse, error)
+	UpdateRuneStatus(context.Context, *MsgUpdateRuneStatus) (*MsgUpdateRuneStatusResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -452,6 +565,9 @@ func (*UnimplementedMsgServer) StakeRune(ctx context.Context, req *MsgStakeRune)
 }
 func (*UnimplementedMsgServer) UnstakeRune(ctx context.Context, req *MsgUnstakeRune) (*MsgUnstakeRuneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnstakeRune not implemented")
+}
+func (*UnimplementedMsgServer) UpdateRuneStatus(ctx context.Context, req *MsgUpdateRuneStatus) (*MsgUpdateRuneStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRuneStatus not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -512,6 +628,24 @@ func _Msg_UnstakeRune_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_UpdateRuneStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateRuneStatus)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateRuneStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/torram.rune.Msg/UpdateRuneStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateRuneStatus(ctx, req.(*MsgUpdateRuneStatus))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "torram.rune.Msg",
@@ -528,6 +662,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnstakeRune",
 			Handler:    _Msg_UnstakeRune_Handler,
+		},
+		{
+			MethodName: "UpdateRuneStatus",
+			Handler:    _Msg_UpdateRuneStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -741,6 +879,73 @@ func (m *MsgUnstakeRuneResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgUpdateRuneStatus) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgUpdateRuneStatus) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgUpdateRuneStatus) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Status)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.RuneId) > 0 {
+		i -= len(m.RuneId)
+		copy(dAtA[i:], m.RuneId)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.RuneId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Authority) > 0 {
+		i -= len(m.Authority)
+		copy(dAtA[i:], m.Authority)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Authority)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgUpdateRuneStatusResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgUpdateRuneStatusResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgUpdateRuneStatusResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -834,6 +1039,36 @@ func (m *MsgUnstakeRune) Size() (n int) {
 }
 
 func (m *MsgUnstakeRuneResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgUpdateRuneStatus) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Authority)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.RuneId)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgUpdateRuneStatusResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1420,6 +1655,202 @@ func (m *MsgUnstakeRuneResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUnstakeRuneResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgUpdateRuneStatus) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgUpdateRuneStatus: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgUpdateRuneStatus: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Authority = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RuneId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RuneId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgUpdateRuneStatusResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgUpdateRuneStatusResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgUpdateRuneStatusResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
