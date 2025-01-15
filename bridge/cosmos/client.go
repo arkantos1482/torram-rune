@@ -3,6 +3,7 @@ package cosmos
 import (
 	"context"
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 
@@ -67,12 +68,14 @@ func NewClient(grpcEndpoint string) (*Client, error) {
 // SubscribeStakeEvents subscribes to stake events from the Cosmos chain
 func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.StakeEvent, errCh chan<- error) {
 	query := "tm.event='Tx' AND event.type='rune_stake_initiated'"
+	log.Printf("Subscribing to stake events with query: %s", query)
 
 	eventCh, err := c.cometWsClient.Subscribe(ctx, "bridge-client", query)
 	if err != nil {
 		errCh <- fmt.Errorf("failed to subscribe to stake events: %w", err)
 		return
 	}
+	log.Println("Successfully subscribed to stake events")
 
 	go func() {
 		defer c.cometWsClient.Unsubscribe(ctx, "bridge-client", query)
@@ -145,12 +148,14 @@ func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.
 // SubscribeUnstakeEvents subscribes to unstake events from the Cosmos chain
 func (c *Client) SubscribeUnstakeEvents(ctx context.Context, unstakeCh chan<- types.UnstakeEvent, errCh chan<- error) {
 	query := "tm.event='Tx' AND event.type='rune_unstake_initiated'"
+	log.Printf("Subscribing to unstake events with query: %s", query)
 
 	eventCh, err := c.cometWsClient.Subscribe(ctx, "bridge-client", query)
 	if err != nil {
 		errCh <- fmt.Errorf("failed to subscribe to unstake events: %w", err)
 		return
 	}
+	log.Println("Successfully subscribed to unstake events")
 
 	go func() {
 		defer c.cometWsClient.Unsubscribe(ctx, "bridge-client", query)

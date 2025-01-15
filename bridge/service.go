@@ -47,19 +47,24 @@ func NewBridgeService(config Config) (*BridgeService, error) {
 
 // Start begins listening for events and processing them
 func (s *BridgeService) Start(ctx context.Context) error {
+	log.Println("Starting Bridge Service...")
+
 	// Create channels for events
 	stakeCh := make(chan types.StakeEvent)
 	unstakeCh := make(chan types.UnstakeEvent)
 	errCh := make(chan error)
 
+	log.Println("Subscribing to stake and unstake events...")
 	// Start listening for events
 	go s.cosmosClient.SubscribeStakeEvents(ctx, stakeCh, errCh)
 	go s.cosmosClient.SubscribeUnstakeEvents(ctx, unstakeCh, errCh)
+	log.Println("Bridge Service started successfully!")
 
 	// Process events
 	for {
 		select {
 		case <-ctx.Done():
+			log.Println("Bridge Service shutting down...")
 			return ctx.Err()
 
 		case err := <-errCh:
@@ -67,11 +72,13 @@ func (s *BridgeService) Start(ctx context.Context) error {
 			continue
 
 		case event := <-stakeCh:
+			log.Printf("Received stake event - RuneID: %s, Owner: %s, Amount: %d", event.RuneID, event.Owner, event.Amount)
 			if err := s.handleStakeEvent(ctx, event); err != nil {
 				log.Printf("Failed to handle stake event: %v", err)
 			}
 
 		case event := <-unstakeCh:
+			log.Printf("Received unstake event - RuneID: %s, Owner: %s, Amount: %d", event.RuneID, event.Owner, event.Amount)
 			if err := s.handleUnstakeEvent(ctx, event); err != nil {
 				log.Printf("Failed to handle unstake event: %v", err)
 			}
