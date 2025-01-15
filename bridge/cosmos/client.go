@@ -67,15 +67,16 @@ func NewClient(grpcEndpoint string) (*Client, error) {
 
 // SubscribeStakeEvents subscribes to stake events from the Cosmos chain
 func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.StakeEvent, errCh chan<- error) {
-	query := "tm.event='Tx' AND event.type='rune_stake_initiated'"
-	log.Printf("Subscribing to stake events with query: %s", query)
+	// Subscribe to all transactions and filter in code
+	query := "tm.event='Tx'"
+	log.Printf("Subscribing to all transactions with query: %s", query)
 
 	eventCh, err := c.cometWsClient.Subscribe(ctx, "bridge-client", query)
 	if err != nil {
 		errCh <- fmt.Errorf("failed to subscribe to stake events: %w", err)
 		return
 	}
-	log.Println("Successfully subscribed to stake events")
+	log.Println("Successfully subscribed to transactions")
 
 	go func() {
 		defer c.cometWsClient.Unsubscribe(ctx, "bridge-client", query)
@@ -89,13 +90,24 @@ func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.
 				// Type assert to TxEvent
 				txEvent, ok := resultEvent.Data.(cmttypes.EventDataTx)
 				if !ok {
-					errCh <- fmt.Errorf("received non-tx event")
+					errCh <- fmt.Errorf("received non-tx event: %T", resultEvent.Data)
 					continue
 				}
 
 				// Extract events from transaction
 				events := txEvent.Result.Events
+				log.Printf("Received transaction with %d events", len(events))
+
 				for _, event := range events {
+					log.Printf("Event Type: %s", event.Type)
+					log.Printf("Event Attributes: %+v", event.Attributes)
+
+					// Check if this is a stake event
+					if event.Type != "rune_stake_initiated" {
+						continue
+					}
+
+					log.Printf("Found stake event: %+v", event)
 
 					// Parse event attributes
 					var (
@@ -106,8 +118,9 @@ func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.
 					)
 
 					for _, attr := range event.Attributes {
-						key := attr.Key
-						value := attr.Value
+						key := string(attr.Key)
+						value := string(attr.Value)
+						log.Printf("Processing attribute - Key: %s, Value: %s", key, value)
 
 						switch key {
 						case "rune_id":
@@ -132,6 +145,7 @@ func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.
 						continue
 					}
 
+					log.Printf("Sending stake event - RuneID: %s, Owner: %s, Amount: %d", runeID, owner, amount)
 					// Send stake event to channel
 					stakeCh <- types.StakeEvent{
 						RuneID:   runeID,
@@ -147,15 +161,16 @@ func (c *Client) SubscribeStakeEvents(ctx context.Context, stakeCh chan<- types.
 
 // SubscribeUnstakeEvents subscribes to unstake events from the Cosmos chain
 func (c *Client) SubscribeUnstakeEvents(ctx context.Context, unstakeCh chan<- types.UnstakeEvent, errCh chan<- error) {
-	query := "tm.event='Tx' AND event.type='rune_unstake_initiated'"
-	log.Printf("Subscribing to unstake events with query: %s", query)
+	// Subscribe to all transactions and filter in code
+	query := "tm.event='Tx'"
+	log.Printf("Subscribing to all transactions with query: %s", query)
 
 	eventCh, err := c.cometWsClient.Subscribe(ctx, "bridge-client", query)
 	if err != nil {
 		errCh <- fmt.Errorf("failed to subscribe to unstake events: %w", err)
 		return
 	}
-	log.Println("Successfully subscribed to unstake events")
+	log.Println("Successfully subscribed to transactions")
 
 	go func() {
 		defer c.cometWsClient.Unsubscribe(ctx, "bridge-client", query)
@@ -169,13 +184,24 @@ func (c *Client) SubscribeUnstakeEvents(ctx context.Context, unstakeCh chan<- ty
 				// Type assert to TxEvent
 				txEvent, ok := resultEvent.Data.(cmttypes.EventDataTx)
 				if !ok {
-					errCh <- fmt.Errorf("received non-tx event")
+					errCh <- fmt.Errorf("received non-tx event: %T", resultEvent.Data)
 					continue
 				}
 
 				// Extract events from transaction
 				events := txEvent.Result.Events
+				log.Printf("Received transaction with %d events", len(events))
+
 				for _, event := range events {
+					log.Printf("Event Type: %s", event.Type)
+					log.Printf("Event Attributes: %+v", event.Attributes)
+
+					// Check if this is an unstake event
+					if event.Type != "rune_unstake_initiated" {
+						continue
+					}
+
+					log.Printf("Found unstake event: %+v", event)
 
 					// Parse event attributes
 					var (
@@ -186,8 +212,9 @@ func (c *Client) SubscribeUnstakeEvents(ctx context.Context, unstakeCh chan<- ty
 					)
 
 					for _, attr := range event.Attributes {
-						key := attr.Key
-						value := attr.Value
+						key := string(attr.Key)
+						value := string(attr.Value)
+						log.Printf("Processing attribute - Key: %s, Value: %s", key, value)
 
 						switch key {
 						case "rune_id":
@@ -212,6 +239,7 @@ func (c *Client) SubscribeUnstakeEvents(ctx context.Context, unstakeCh chan<- ty
 						continue
 					}
 
+					log.Printf("Sending unstake event - RuneID: %s, Owner: %s, Amount: %d", runeID, owner, amount)
 					// Send unstake event to channel
 					unstakeCh <- types.UnstakeEvent{
 						RuneID:   runeID,
