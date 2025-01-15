@@ -48,6 +48,12 @@ func NewClient(grpcEndpoint string) (*Client, error) {
 		return nil, fmt.Errorf("failed to create websocket client: %w", err)
 	}
 
+	// Start the WebSocket client
+	if err := wsClient.Start(); err != nil {
+		return nil, fmt.Errorf("failed to start websocket client: %w", err)
+	}
+	log.Printf("WebSocket client connected to %s", cometBftEndpoint)
+
 	msgClient := runetypes.NewMsgClient(conn)
 
 	return &Client{
