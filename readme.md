@@ -61,6 +61,8 @@ The platform uses an event-driven architecture:
 - `rune_unstake_initiated`: Emitted when an unstake is requested
 - Events include metadata for cross-chain synchronization
 
+This doc need to be updated
+
 
 ## Dependencies
 
